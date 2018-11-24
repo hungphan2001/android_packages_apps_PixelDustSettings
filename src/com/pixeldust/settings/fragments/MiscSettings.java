@@ -38,7 +38,8 @@ public class MiscSettings extends SettingsPreferenceFragment implements Indexabl
 
     private static final String AMBIENT_PLAY_CAT_KEY = "ambient_play_cat";
     private PreferenceCategory mAmbientPlayCategory;
-
+private static final String KEY_DEVICE_PART = "advanced_controls";
+    private static final String KEY_DEVICE_PART_PACKAGE_NAME = "com.thht.settings.device";
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -52,6 +53,11 @@ public class MiscSettings extends SettingsPreferenceFragment implements Indexabl
             mAmbientPlayCategory = (PreferenceCategory) findPreference(AMBIENT_PLAY_CAT_KEY);
             prefScreen.removePreference(mAmbientPlayCategory);
         }
+                // Advanced Controls
+        if (!com.pixeldust.settings.preferences.Utils.isPackageInstalled(getActivity(), KEY_DEVICE_PART_PACKAGE_NAME)) {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_PART));
+        }
+
     }
 
     @Override
